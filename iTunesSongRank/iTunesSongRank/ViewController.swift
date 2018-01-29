@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // itemsをJSONの配列と定義
     var items: [JSON] = []
+    var entity: [JSON] = []
     
     // ステータスバーの高さ
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -35,14 +36,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // 画面に UITableView を追加
         self.view.addSubview(tableView)
         
-        // QiitaのAPIからデータを取得
+        // iTunesのAPIからデータを取得
         let listUrl = "https://rss.itunes.apple.com/api/v1/jp/itunes-music/top-songs/all/25/explicit.json";
+        //APIリクエスト
         Alamofire.request(listUrl).responseJSON{ response in
+            //jsonという変数にJSON配列を代入
             let json = JSON(response.result.value ?? 0)
+            //foreachとクロージャ？。itemsにdataを追加
             json.forEach{(_, data) in
                 self.items.append(data)
             }
             tableView.reloadData()
+            //print(self.items[0])
         }
     }
 
@@ -56,8 +61,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを作る
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "TableCell")
-        cell.textLabel?.text = items[0]["results"][indexPath.row]["name"].string
-        cell.detailTextLabel?.text = items[0]["results"][indexPath.row]["artistName"].stringValue
+        /*
+        cell.textLabel?.text = items[indexPath.row]["results"][indexPath.row]["name"].string
+        cell.detailTextLabel?.text = items[indexPath.row]["results"][indexPath.row]["artistName"].stringValue
+        */
+        cell.textLabel?.text = items[indexPath.row]["results"][indexPath.row]["name"].string
+        cell.detailTextLabel?.text = items[indexPath.row]["results"][indexPath.row]["artistName"].string
         return cell
     }
     
@@ -65,6 +74,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // セルの数を設定
         //return 5
+        print("items.countの値は\(items.count)です")
         return items.count
     }
     
