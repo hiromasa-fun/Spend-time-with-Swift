@@ -14,7 +14,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // itemsをJSONの配列と定義
     var items: [JSON] = []
-    var entity: [JSON] = []
+    var nameArray: [String] = []
+    var artistNameArray: [String] = []
+    let songCount: Int = 24
     
     // ステータスバーの高さ
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -45,57 +47,49 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             //foreachとクロージャ？。itemsにdataを追加
             json.forEach{(_, data) in
                 self.items.append(data)
+                //itemsのresults内部から取得して配列に代入
+                for i in 0...self.songCount {
+                    self.items[0]["results"][i]["name"].string != nil ? self.nameArray.append(self.items[0]["results"][i]["name"].string!) : print("空です。")
+                    self.items[0]["results"][i]["artistName"].string != nil ? self.artistNameArray.append(self.items[0]["results"][i]["artistName"].string!) : print("空です。")
+                }
             }
             tableView.reloadData()
-            //print(self.items[0])
+            print(self.items[0])
         }
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // セルを作る
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "TableCell")
-        /*
-        cell.textLabel?.text = items[indexPath.row]["results"][indexPath.row]["name"].string
-        cell.detailTextLabel?.text = items[indexPath.row]["results"][indexPath.row]["artistName"].stringValue
-        */
-        cell.textLabel?.text = items[indexPath.row]["results"][indexPath.row]["name"].string
-        cell.detailTextLabel?.text = items[indexPath.row]["results"][indexPath.row]["artistName"].string
+        cell.textLabel?.text = nameArray[indexPath.row]
+        cell.detailTextLabel?.text = artistNameArray[indexPath.row]
+        
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // セルの数を設定
-        //return 5
-        print("items.countの値は\(items.count)です")
-        return items.count
+        return nameArray.count
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルがタップされた時の処理
         print("タップされたセルのindex番号: \(indexPath.row)")
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // セルの高さを設定
         return 64
     }
     
-    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         // アクセサリボタン（セルの右にあるボタン）がタップされた時の処理
         print("タップされたアクセサリがあるセルのindex番号: \(indexPath.row)")
     }
-    
-
 }
 
