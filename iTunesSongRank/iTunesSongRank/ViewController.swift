@@ -12,13 +12,10 @@ import Alamofire
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // itemsをJSONの配列と定義
     var items: [JSON] = []
     var nameArray: [String] = []
     var artistNameArray: [String] = []
     let songCount: Int = 24
-    
-    // ステータスバーの高さ
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
     
     
@@ -32,29 +29,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             width: self.view.frame.width,
             height: self.view.frame.height - statusBarHeight
         )
+        
+        //Delegate
         tableView.delegate = self
         tableView.dataSource = self
         
-        // 画面に UITableView を追加
+        //TableView
         self.view.addSubview(tableView)
         
-        // iTunesのAPIからデータを取得
+        // iTunes RSS Generator API
         let listUrl = "https://rss.itunes.apple.com/api/v1/jp/itunes-music/top-songs/all/25/explicit.json";
-        //APIリクエスト
+        //API request
         Alamofire.request(listUrl).responseJSON{ response in
-            //jsonという変数にJSON配列を代入
             let json = JSON(response.result.value ?? 0)
-            //foreachとクロージャ？。itemsにdataを追加
             json.forEach{(_, data) in
                 self.items.append(data)
-                //itemsのresults内部から取得して配列に代入
+                
+                //jsonのresults内部から取得して配列に代入
                 for i in 0...self.songCount {
-                    self.items[0]["results"][i]["name"].string != nil ? self.nameArray.append(self.items[0]["results"][i]["name"].string!) : print("空です。")
-                    self.items[0]["results"][i]["artistName"].string != nil ? self.artistNameArray.append(self.items[0]["results"][i]["artistName"].string!) : print("空です。")
+                    self.items[0]["results"][i]["name"].string != nil ? self.nameArray.append(self.items[0]["results"][i]["name"].string!) : print("nameが空です。")
+                    self.items[0]["results"][i]["artistName"].string != nil ? self.artistNameArray.append(self.items[0]["results"][i]["artistName"].string!) : print("artistNameが空です。")
                 }
             }
             tableView.reloadData()
-            print(self.items[0])
         }
     }
 
@@ -64,7 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // セルを作る
+        // make Cell
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "TableCell")
         cell.textLabel?.text = nameArray[indexPath.row]
         cell.detailTextLabel?.text = artistNameArray[indexPath.row]
@@ -73,23 +70,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // セルの数を設定
+        // Cell count
         return nameArray.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // セルがタップされた時の処理
+        // Cell tapped action
         print("タップされたセルのindex番号: \(indexPath.row)")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // セルの高さを設定
+        // Cell hight
         return 64
     }
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        // アクセサリボタン（セルの右にあるボタン）がタップされた時の処理
-        print("タップされたアクセサリがあるセルのindex番号: \(indexPath.row)")
-    }
 }
 
