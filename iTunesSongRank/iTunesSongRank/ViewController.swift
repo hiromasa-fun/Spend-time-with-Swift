@@ -34,6 +34,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
+        //NavigationController
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationItem.title = "iTunes Song Ranking"
+        
         //TableView
         self.view.addSubview(tableView)
         
@@ -47,8 +51,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 //jsonのresults内部から取得して配列に代入
                 for i in 0...self.songCount {
-                    self.items[0]["results"][i]["name"].string != nil ? self.nameArray.append(self.items[0]["results"][i]["name"].string!) : print("nameが空です。")
-                    self.items[0]["results"][i]["artistName"].string != nil ? self.artistNameArray.append(self.items[0]["results"][i]["artistName"].string!) : print("artistNameが空です。")
+                    self.items[0]["results"][i]["name"].string != nil ? self.nameArray.append(self.items[0]["results"][i]["name"].string!) : print("nameがありません。")
+                    self.items[0]["results"][i]["artistName"].string != nil ? self.artistNameArray.append(self.items[0]["results"][i]["artistName"].string!) : print("artistNameがありません")
                 }
             }
             tableView.reloadData()
