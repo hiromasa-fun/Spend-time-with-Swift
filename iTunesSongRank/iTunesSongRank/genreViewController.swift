@@ -13,12 +13,16 @@ class genreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Label
+        let label1 = UILabel()
+        label1.text = "hello"
+        label1.sizeToFit()
+        label1.center = self.view.center
+        self.view.addSubview(label1)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

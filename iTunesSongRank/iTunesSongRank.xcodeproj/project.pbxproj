@@ -16,6 +16,7 @@
 		27C0CA53201DBA3500158A0D /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0CA51201DBA3500158A0D /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27C0CA56201DBA4500158A0D /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0CA55201DBA4500158A0D /* SwiftyJSON.framework */; };
 		27C0CA57201DBA4500158A0D /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27C0CA55201DBA4500158A0D /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27C0CA5A20219A5200158A0D /* genreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0CA5920219A5200158A0D /* genreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		27C0CA4B201DA79900158A0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27C0CA51201DBA3500158A0D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		27C0CA55201DBA4500158A0D /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		27C0CA5920219A5200158A0D /* genreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = genreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				27C0CA3F201DA79900158A0D /* AppDelegate.swift */,
 				27C0CA41201DA79900158A0D /* ViewController.swift */,
+				27C0CA5920219A5200158A0D /* genreViewController.swift */,
 				27C0CA43201DA79900158A0D /* Main.storyboard */,
 				27C0CA46201DA79900158A0D /* Assets.xcassets */,
 				27C0CA48201DA79900158A0D /* LaunchScreen.storyboard */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27C0CA5A20219A5200158A0D /* genreViewController.swift in Sources */,
 				27C0CA42201DA79900158A0D /* ViewController.swift in Sources */,
 				27C0CA40201DA79900158A0D /* AppDelegate.swift in Sources */,
 			);
