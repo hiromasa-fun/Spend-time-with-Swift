@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2783411A20230EAC008ADC76 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2783411920230EAC008ADC76 /* MainTabBarViewController.swift */; };
+		2783411C202320E0008ADC76 /* genreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2783411B202320E0008ADC76 /* genreViewController.storyboard */; };
 		27C0CA40201DA79900158A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0CA3F201DA79900158A0D /* AppDelegate.swift */; };
 		27C0CA42201DA79900158A0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0CA41201DA79900158A0D /* ViewController.swift */; };
 		27C0CA45201DA79900158A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C0CA43201DA79900158A0D /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2783411920230EAC008ADC76 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		2783411B202320E0008ADC76 /* genreViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = genreViewController.storyboard; sourceTree = "<group>"; };
 		27C0CA3C201DA79900158A0D /* iTunesSongRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSongRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C0CA3F201DA79900158A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27C0CA41201DA79900158A0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,9 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				27C0CA3F201DA79900158A0D /* AppDelegate.swift */,
-				27C0CA41201DA79900158A0D /* ViewController.swift */,
-				27C0CA5920219A5200158A0D /* genreViewController.swift */,
 				27C0CA43201DA79900158A0D /* Main.storyboard */,
+				27C0CA41201DA79900158A0D /* ViewController.swift */,
+				2783411920230EAC008ADC76 /* MainTabBarViewController.swift */,
+				2783411B202320E0008ADC76 /* genreViewController.storyboard */,
+				27C0CA5920219A5200158A0D /* genreViewController.swift */,
 				27C0CA46201DA79900158A0D /* Assets.xcassets */,
 				27C0CA48201DA79900158A0D /* LaunchScreen.storyboard */,
 				27C0CA4B201DA79900158A0D /* Info.plist */,
@@ -154,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C0CA4A201DA79900158A0D /* LaunchScreen.storyboard in Resources */,
+				2783411C202320E0008ADC76 /* genreViewController.storyboard in Resources */,
 				27C0CA47201DA79900158A0D /* Assets.xcassets in Resources */,
 				27C0CA45201DA79900158A0D /* Main.storyboard in Resources */,
 			);
@@ -185,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C0CA5A20219A5200158A0D /* genreViewController.swift in Sources */,
+				2783411A20230EAC008ADC76 /* MainTabBarViewController.swift in Sources */,
 				27C0CA42201DA79900158A0D /* ViewController.swift in Sources */,
 				27C0CA40201DA79900158A0D /* AppDelegate.swift in Sources */,
 			);

@@ -16,31 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
-        //UITabbar
-        // ViewController array
-        var viewControllers: [UIViewController] = []
-        
-        // ViewController
-        let firstVC = ViewController()
-        firstVC.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
-        viewControllers.append(firstVC)
-        
-        // genreViewController
-        let secondVC = genreViewController()
-        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 2)
-        viewControllers.append(secondVC)
-        
-        // Page set
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers(viewControllers, animated: false)
-        
-        // rootをUITabBarController にする
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = UIColor.white
-        window?.rootViewController = tabBarController
+        window?.rootViewController = MainTabBarViewController()
         window?.makeKeyAndVisible()
-        
         return true
     }
 
