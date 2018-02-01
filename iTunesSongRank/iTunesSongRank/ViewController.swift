@@ -18,17 +18,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let songCount: Int = 24
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        
         let tableView = UITableView()        
-        tableView.frame = CGRect(
-            x: 0,
-            y: statusBarHeight,
-            width: self.view.frame.width,
-            height: self.view.frame.height - statusBarHeight
-        )
+        tableView.frame = CGRect(x: 0, y: statusBarHeight, width: width, height: height-statusBarHeight)
         
         //Delegate
         tableView.delegate = self
@@ -40,7 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //TableView
         self.view.addSubview(tableView)
-        
+
         // iTunes RSS Generator API
         let listUrl = "https://rss.itunes.apple.com/api/v1/jp/itunes-music/top-songs/all/25/explicit.json";
         //API request
@@ -81,6 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell tapped action
         print("タップされたセルのindex番号: \(indexPath.row)")
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
