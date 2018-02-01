@@ -12,10 +12,14 @@ class genreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // NavigationController
+        navigationItem.title = "Genre"
+        
         // Label
         let label1 = UILabel()
         label1.text = "hello"
+        label1.textColor = UIColor.white
         label1.sizeToFit()
         label1.center = self.view.center
         self.view.addSubview(label1)
