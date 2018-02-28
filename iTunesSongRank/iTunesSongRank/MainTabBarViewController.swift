@@ -22,6 +22,9 @@ class MainTabBarViewController: UITabBarController {
         let nv2 = UINavigationController(rootViewController: vc2)
         setViewControllers([nv, nv2], animated: false)
         
+        // Color
+        UITabBar.appearance().tintColor = UIColor(red: 255/255, green: 233/255, blue: 51/255, alpha: 1.0)
+        UITabBar.appearance().barTintColor = UIColor(red: 66/255, green: 74/255, blue: 93/255, alpha: 1.0)
     }
 
     override func didReceiveMemoryWarning() {
