@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var songName: [String] = []
     var artistName: [String] = []
     var albumArtWork: [String] = []
+    var albumUrl: [String] = []
     let songCount: Int = 24
     let statusBarHeight = UIApplication.shared.statusBarFrame.height
     
@@ -34,7 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //NavigationController
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "ソング"
+        self.navigationItem.title = "ソングランキング"
         
         //TableView
         tableView.register(myCell.self, forCellReuseIdentifier: NSStringFromClass(myCell.self))
@@ -53,7 +54,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for i in 0...self.songCount {
                     self.items[0]["results"][i]["name"].string != nil ? self.songName.append(self.items[0]["results"][i]["name"].string!) : print("nameがありません。")
                     self.items[0]["results"][i]["artistName"].string != nil ? self.artistName.append(self.items[0]["results"][i]["artistName"].string!) : print("artistNameがありません")
-                     self.items[0]["results"][i]["artworkUrl100"].string != nil ? self.albumArtWork.append(self.items[0]["results"][i]["artistName"].string!) : print("albumArtWorkがありません")
+                    self.items[0]["results"][i]["artworkUrl100"].string != nil ? self.albumArtWork.append(self.items[0]["results"][i]["artistName"].string!) : print("albumArtWorkがありません")
+                    self.items[0]["results"][i]["url"].string != nil ? self.albumUrl.append(self.items[0]["results"][i]["url"].string!) : print("albumArtWorkがありません")
                 }
             }
             tableView.reloadData()
@@ -83,8 +85,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell tapped action
-        print("タップされたセルのindex番号: \(indexPath.row)")
-        //tableView.deselectRow(at: indexPath, animated: true)
+        
+        let url = URL(string: albumUrl[indexPath.row])!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+ 
+        
+        print("\(indexPath.row)番目をタップした")
+        print(albumUrl[indexPath.row])
+        
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
