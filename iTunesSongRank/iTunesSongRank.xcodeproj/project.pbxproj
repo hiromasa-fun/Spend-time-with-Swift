@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2783411A20230EAC008ADC76 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2783411920230EAC008ADC76 /* MainTabBarViewController.swift */; };
 		2783411C202320E0008ADC76 /* genreViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2783411B202320E0008ADC76 /* genreViewController.storyboard */; };
+		27B07AD8204971B600DE74D5 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B07AD7204971B600DE74D5 /* AlamofireImage.framework */; };
+		27B07AD9204971B600DE74D5 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27B07AD7204971B600DE74D5 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27C0CA40201DA79900158A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0CA3F201DA79900158A0D /* AppDelegate.swift */; };
 		27C0CA42201DA79900158A0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0CA41201DA79900158A0D /* ViewController.swift */; };
 		27C0CA45201DA79900158A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C0CA43201DA79900158A0D /* Main.storyboard */; };
@@ -28,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				27B07AD9204971B600DE74D5 /* AlamofireImage.framework in Embed Frameworks */,
 				27C0CA57201DBA4500158A0D /* SwiftyJSON.framework in Embed Frameworks */,
 				27C0CA53201DBA3500158A0D /* Alamofire.framework in Embed Frameworks */,
 			);
@@ -39,6 +42,7 @@
 /* Begin PBXFileReference section */
 		2783411920230EAC008ADC76 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		2783411B202320E0008ADC76 /* genreViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = genreViewController.storyboard; sourceTree = "<group>"; };
+		27B07AD7204971B600DE74D5 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		27C0CA3C201DA79900158A0D /* iTunesSongRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSongRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C0CA3F201DA79900158A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27C0CA41201DA79900158A0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27B07AD8204971B600DE74D5 /* AlamofireImage.framework in Frameworks */,
 				27C0CA56201DBA4500158A0D /* SwiftyJSON.framework in Frameworks */,
 				27C0CA52201DBA3500158A0D /* Alamofire.framework in Frameworks */,
 			);
@@ -67,6 +72,7 @@
 		27C0CA33201DA79900158A0D = {
 			isa = PBXGroup;
 			children = (
+				27B07AD7204971B600DE74D5 /* AlamofireImage.framework */,
 				27C0CA55201DBA4500158A0D /* SwiftyJSON.framework */,
 				27C0CA51201DBA3500158A0D /* Alamofire.framework */,
 				27C0CA3E201DA79900158A0D /* iTunesSongRank */,
@@ -177,6 +183,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework ",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ALAlamofireImage.framework",
 			);
 			outputPaths = (
 			);
