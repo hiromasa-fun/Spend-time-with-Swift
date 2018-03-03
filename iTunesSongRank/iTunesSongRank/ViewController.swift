@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import AlamofireImage
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //NavigationController
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "ソングランキング"
+        self.navigationItem.title = "トップソング"
         
         //TableView
         tableView.register(myCell.self, forCellReuseIdentifier: NSStringFromClass(myCell.self))
@@ -54,7 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 for i in 0...self.songCount {
                     self.items[0]["results"][i]["name"].string != nil ? self.songName.append(self.items[0]["results"][i]["name"].string!) : print("nameがありません。")
                     self.items[0]["results"][i]["artistName"].string != nil ? self.artistName.append(self.items[0]["results"][i]["artistName"].string!) : print("artistNameがありません")
-                    self.items[0]["results"][i]["artworkUrl100"].string != nil ? self.albumArtWork.append(self.items[0]["results"][i]["artistName"].string!) : print("albumArtWorkがありません")
+                    self.items[0]["results"][i]["artworkUrl100"].string != nil ? self.albumArtWork.append(self.items[0]["results"][i]["artworkUrl100"].string!) : print("albumArtWorkがありません")
                     self.items[0]["results"][i]["url"].string != nil ? self.albumUrl.append(self.items[0]["results"][i]["url"].string!) : print("albumArtWorkがありません")
                 }
             }
@@ -67,13 +68,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // make Cell
         //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "TableCell")
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(myCell.self), for: indexPath) as! myCell
         
-        //cell.textLabel?.text = "\(indexPath.row+1). " + nameArray[indexPath.row]
+        //Text
         cell.songLabel.text = "\(indexPath.row+1). " + songName[indexPath.row]
         cell.artistNameLabel.text = artistName[indexPath.row]
+        
+        //Image
+        let url = URL(string: albumArtWork[indexPath.row])!
+        let imageData = try? Data(contentsOf: url)
+        let myImage = UIImage(data: imageData!)
+        //cell.imageView!.image = myImage?.resize(size: CGSize(width: 50, height: 50))
+        cell.imageView?.af_setImage(withURL: url, placeholderImage: myImage)
+        //cell.imageView?.image = myImage
+
         
         return cell
     }
@@ -85,16 +94,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell tapped action
-        
+        /*
         let url = URL(string: albumUrl[indexPath.row])!
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
- 
-        
+        */
+        //debug
         print("\(indexPath.row)番目をタップした")
         print(albumUrl[indexPath.row])
-        
+        print(albumArtWork[indexPath.row])
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -103,30 +112,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Cell hight
         return 64
     }
-    
-    /*
-    func getImage(){
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        let url = URL(string: "https://s3.amazonaws.com/CoverProject/album/album_david_bowie_lets_dance.png")
-        let task = session.dataTask(with: url!)
-        { (data, response, error) in
-            guard let getData = data else {
-                session.invalidateAndCancel()
-                return
-            }
-            DispatchQueue.global(qos: .userInitiated).async {
-                let image = UIImage(data: getData)
-                DispatchQueue.main.async { [weak self] in
-                    self?.imageView.image = image
-                }
-            }
-            
-        }
-        task.resume()
+}
+
+
+extension UIImage {
+    func resize(size: CGSize) -> UIImage {
+        let widthRatio = size.width / self.size.width
+        let heightRatio = size.height / self.size.height
+        let ratio = (widthRatio < heightRatio) ? widthRatio : heightRatio
+        let resizedSize = CGSize(width: (self.size.width * ratio), height: (self.size.height * ratio))
+        // 画質を落とさないように以下を修正
+        UIGraphicsBeginImageContextWithOptions(resizedSize, false, 0.0)
+        draw(in: CGRect(x: 0, y: 0, width: resizedSize.width, height: resizedSize.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return resizedImage!
     }
-    */
-    
 }
 
 class myCell: UITableViewCell {
@@ -147,21 +148,11 @@ class myCell: UITableViewCell {
         artistNameLabel.textAlignment = .left
         contentView.addSubview(artistNameLabel)
         
-        // Image
-        myImage = UIImage(named: "ImageIcon")
+        /*
+        myImage = UIImage()
         myImageView = UIImageView(image: myImage)
         contentView.addSubview(myImageView)
-        
-        
-        
-        /*
-        let url = URL(string: "http://k.yimg.jp/images/top/sp2/cmn/logo-ns_d_131205.png")!
-        //セット
-        let imageData = try? Data(contentsOf: url)
-        let myImage = UIImage(data:imageData!)
-        let myImageView = UIImageView(image: myImage)
-        contentView.addSubview(myImageView)
-         */
+        */
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -174,9 +165,9 @@ class myCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        songLabel.frame = CGRect(x: 70, y: 0, width: frame.width - 100, height: frame.height)
-        artistNameLabel.frame = CGRect(x: 70, y: 22, width: frame.width - 100, height: frame.height)
-        myImageView.frame = CGRect(x: 0, y: 0, width: 64, height: frame.height)
+        songLabel.frame = CGRect(x: 100, y: 0, width: frame.width - 100, height: frame.height)
+        artistNameLabel.frame = CGRect(x: 100, y: 22, width: frame.width - 100, height: frame.height)
+        //myImageView.frame = CGRect(x: 0, y: 0, width: 64, height: frame.height)
     }
 }
 
